@@ -7,10 +7,12 @@ public class IPObject {
 	public boolean vulnderable;
 	public serverType serverType;
 	
-	
+	/**
+	 * Constructor
+	 * @param ipAd ip address as a string (xxx.xxx.xxx.xxx)
+	 */
 	public IPObject(String ipAd)
 	{
-		System.out.println(ipAd);
 		addr = new int[4];
 		String[] splits = ipAd.split("\\.");
 		for (int i = 0; i < 4; i++)
@@ -48,6 +50,8 @@ public class IPObject {
 		boolean c1 = (this.addr[0] == comp.addr[0]);
 		boolean c2 = (this.addr[1] == comp.addr[1]);
 		boolean c3 = (this.addr[2] == comp.addr[2]);
-		return (c1 && c2 && c3);
+		boolean c4 = (this.addr[3] == comp.addr[3]);
+		
+		return (c1 && c2 && c3 && c4);
 	}
 }
