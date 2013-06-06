@@ -1,12 +1,14 @@
 package imp.core;
 
+
 public class IPObject {
 	
 	private int[] addr;
 	public boolean scanned;
 	public boolean vulnderable;
 	public serverType serverType;
-	
+	public String username;
+	public String password;
 	/**
 	 * Constructor
 	 * @param ipAd ip address as a string (xxx.xxx.xxx.xxx)
@@ -20,7 +22,10 @@ public class IPObject {
 			addr[i] = Integer.parseInt(splits[i]);
 		}
 		scanned = false;
+		
 		serverType = imp.core.serverType.UNKNOWN;
+		username = "";
+		password = "";
 	}
 	
 	/**
@@ -31,6 +36,19 @@ public class IPObject {
 		return addr[0]+"."+addr[1]+"."+addr[2]+"."+addr[3];
 	}
 	
+	public String getServerType()
+	{
+		if (serverType == imp.core.serverType.MYSQL)
+		{
+			return "MySQL";
+		} else if (serverType == imp.core.serverType.MSSQL)
+		{
+			return "MSSQL";
+		} else {
+			return "UNKNOWN";
+		}
+	}
+	
 	/**
 	 * Return the ip array
 	 * @return ip int array
@@ -38,6 +56,16 @@ public class IPObject {
 	public int[] get()
 	{
 		return addr;
+	}
+	
+	public String getUsername()
+	{
+		return username;
+	}
+	
+	public String getPassword()
+	{
+		return password;
 	}
 	
 	/**
@@ -54,4 +82,13 @@ public class IPObject {
 		
 		return (c1 && c2 && c3 && c4);
 	}
+	
+	/**
+	 * Converts a ipv4 dot address to an integer value
+	 * @return long representation of IPv4
+	 */
+    public long toInt() {
+    	long num = (addr[0] * 16777216) + (addr[1] * 65536) + (addr[2] * 256) + addr[3];
+        return num & 0xFFFFFFFFL;
+    }
 }

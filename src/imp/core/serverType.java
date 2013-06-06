@@ -1,5 +1,5 @@
 package imp.core;
 
 public enum serverType {
-	MYSQL, SSQL, UNKNOWN
+	MYSQL, MSSQL, UNKNOWN
 }

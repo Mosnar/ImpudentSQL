@@ -2,50 +2,56 @@ package imp.main;
 
 import imp.core.IPObject;
 import imp.core.NetScanner;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ImpudentSQL {
 	
 	private static IPObject start;
 	private static IPObject end;
-	private static IPObject subnet;
 	
 	public static void main(String[] args)
 	{
 		String startS;
 		String endS;
-		String subnetS;
 		
 		Scanner reader = new Scanner(System.in);
 		
+		// Start the GUI
+		//new MainScreen();
 		
+		
+		// Get the start address
 		do {
 		System.out.println("Start address (x.x.x.x): ");
 		startS = reader.nextLine();
 		} while(!isIPAddress(startS));
-		
 		start = new IPObject(startS);
-		
+
+		// Get the end address
 		do {
 		System.out.println("End address (x.x.x.x): ");
 		endS = reader.nextLine();
 		} while(!isIPAddress(startS));
-
 		end   = new IPObject(endS);
-		
-		do {
-		System.out.println("Subnet Mask (x.x.x.x): ");
-		subnetS = reader.nextLine();
-		} while(!isIPAddress(subnetS));
 
-		subnet   = new IPObject(subnetS);
+		reader.close();
 		
-		
-		final NetScanner scan = new NetScanner(start, end, subnet);
-		
-		System.out.println(scan.getNumIP());
+		final NetScanner scan = new NetScanner(start, end);
+		ArrayList<IPObject> entries = scan.getIps();
+		for(IPObject entry : entries)
+		{
+			System.out.println(entry);
+		}
 	}
 	
+	/**
+	 * This method will check if a string matches the correct format of an
+	 * IPv4 address
+	 * @param ipAddress string ip address (x.x.x.x)
+	 * @return true or false
+	 */
 	public static boolean isIPAddress(String ipAddress) 
 	{
 		String[] tokens = ipAddress.split("\\.");
