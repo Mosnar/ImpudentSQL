@@ -1,7 +1,8 @@
 package imp.main;
 
 import imp.core.IPObject;
-import imp.core.NetScanner;
+import imp.model.NetScanner;
+import imp.view.MainScreen;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public class ImpudentSQL {
 		Scanner reader = new Scanner(System.in);
 		
 		// Start the GUI
-		//new MainScreen();
+		new MainScreen();
 		
 		
 		// Get the start address

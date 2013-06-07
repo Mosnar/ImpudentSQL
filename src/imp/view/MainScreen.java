@@ -1,8 +1,12 @@
-package imp.main;
+package imp.view;
 
 import java.awt.Container;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -29,7 +33,7 @@ public class MainScreen extends JFrame {
 	JPanel pane = new JPanel();
 	
 	
-	MainScreen()
+	public MainScreen()
 	{
 		super("ImpudentSQL v0.1");
 		setBounds(200, 200, 600, 500);
@@ -48,15 +52,45 @@ public class MainScreen extends JFrame {
 		pane.setLayout(gl_pane);
 		
 		
-		// Table Stuff
-		String[] columnNames = {"IP Address", "Port", "Architecture", "Username", "Password"};
-		Object[][] data = {
-				{"192.168.1.1", "21", "MySQL", "", ""}
-		};
-		JTable table = new JTable(data, columnNames);
-		JScrollPane scrollPane = new JScrollPane(table);
-		table.setFillsViewportHeight(true);
-		con.add(scrollPane);
+		// Menu bar code
+		JMenuBar menuBar;
+		JMenu menuFile, menuHelp;
+		JMenuItem export, options, quit, about;
+		
+		// Make menu bar
+		menuBar = new JMenuBar();
+		
+		// Add File, Help
+		menuFile = new JMenu("File");
+		menuHelp = new JMenu("Help");
+		
+		// Add buttons
+		export = new JMenuItem("Export Results as XML",
+                KeyEvent.VK_X);
+		menuFile.add(export);
+		options = new JMenuItem("Options",
+                KeyEvent.VK_O);
+		menuFile.add(options);
+		quit = new JMenuItem("Quit",
+                KeyEvent.VK_Q);
+		menuFile.add(quit);
+		
+		about = new JMenuItem("Quit",
+                KeyEvent.VK_Q);
+		menuFile.add(quit);
+		
+		// Set key helpers
+		menuFile.setMnemonic(KeyEvent.VK_F);
+		menuHelp.setMnemonic(KeyEvent.VK_H);
+		
+		// Add menu items to the bar
+		menuBar.add(menuFile);
+		menuBar.add(menuHelp);
+		
+		this.setJMenuBar(menuBar);
+		
+		
+		
 		setVisible(true);
 		setResizable(false);
 	}
