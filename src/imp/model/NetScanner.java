@@ -56,14 +56,14 @@ public class NetScanner {
 	 *            this is the server type enum to scan. (MYSQL, MSSQL)
 	 */
 	public void runScan(serverType type) {
-
+		
 	}
 
 	/**
 	 * Static method to convert an integer back into an IPv4 address
 	 * 
 	 * @param ipAddress
-	 * @return converts an integer representaiton of an IPv4 address into its
+	 * @return converts an integer representation of an IPv4 address into its
 	 *         normal dot-notation form
 	 */
 	public String intToIp(long ipAddress) {
