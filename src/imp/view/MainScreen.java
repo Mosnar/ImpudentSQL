@@ -1,97 +1,89 @@
 package imp.view;
 
-import java.awt.Container;
-import java.awt.event.KeyEvent;
+import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JRadioButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JProgressBar;
+import java.awt.Toolkit;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import java.awt.ScrollPane;
+import javax.swing.JProgressBar;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
 
-public class MainScreen extends JFrame {
+public class MainScreen {
+
+	private JFrame frame;
 
 	/**
-	 * 
+	 * Launch the application.
 	 */
-	private static final long serialVersionUID = 6771442546801658873L;
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainScreen window = new MainScreen();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-	JPanel pane = new JPanel();
-	
-	
-	public MainScreen()
-	{
-		super("ImpudentSQL v0.1");
-		setBounds(200, 200, 600, 500);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Container con =  this.getContentPane();
-		con.add(pane);
-		GroupLayout gl_pane = new GroupLayout(pane);
-		gl_pane.setHorizontalGroup(
-			gl_pane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 594, Short.MAX_VALUE)
+	/**
+	 * Create the application.
+	 */
+	public MainScreen() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 777, 421);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mntmExportResults = new JMenuItem("Export Results");
+		mnFile.add(mntmExportResults);
+		
+		JMenuItem mntmOptions = new JMenuItem("Preferences");
+		mnFile.add(mntmOptions);
+		
+		JMenuItem mntmQuit = new JMenuItem("Quit");
+		mnFile.add(mntmQuit);
+		
+		JMenu mnHelp = new JMenu("Help");
+		menuBar.add(mnHelp);
+		
+		JMenuItem mntmAbout = new JMenuItem("About");
+		mnHelp.add(mntmAbout);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setStringPainted(true);
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(progressBar, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
 		);
-		gl_pane.setVerticalGroup(
-			gl_pane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 472, Short.MAX_VALUE)
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(357, Short.MAX_VALUE)
+					.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
-		pane.setLayout(gl_pane);
-		
-		
-		// Menu bar code
-		JMenuBar menuBar;
-		JMenu menuFile, menuHelp;
-		JMenuItem export, options, quit, about;
-		
-		// Make menu bar
-		menuBar = new JMenuBar();
-		
-		// Add File, Help
-		menuFile = new JMenu("File");
-		menuHelp = new JMenu("Help");
-		
-		// Add buttons
-		export = new JMenuItem("Export Results as XML",
-                KeyEvent.VK_X);
-		menuFile.add(export);
-		options = new JMenuItem("Options",
-                KeyEvent.VK_O);
-		menuFile.add(options);
-		quit = new JMenuItem("Quit",
-                KeyEvent.VK_Q);
-		menuFile.add(quit);
-		
-		about = new JMenuItem("Quit",
-                KeyEvent.VK_Q);
-		menuFile.add(quit);
-		
-		// Set key helpers
-		menuFile.setMnemonic(KeyEvent.VK_F);
-		menuHelp.setMnemonic(KeyEvent.VK_H);
-		
-		// Add menu items to the bar
-		menuBar.add(menuFile);
-		menuBar.add(menuHelp);
-		
-		this.setJMenuBar(menuBar);
-		
-		
-		
-		setVisible(true);
-		setResizable(false);
+		frame.getContentPane().setLayout(groupLayout);
 	}
 }

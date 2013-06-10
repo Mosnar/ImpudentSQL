@@ -12,8 +12,7 @@ public class ImpudentSQL {
 	private static IPObject start;
 	private static IPObject end;
 	
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		String startS;
 		String endS;
 		
@@ -53,8 +52,7 @@ public class ImpudentSQL {
 	 * @param ipAddress string ip address (x.x.x.x)
 	 * @return true or false
 	 */
-	public static boolean isIPAddress(String ipAddress) 
-	{
+	public static boolean isIPAddress(String ipAddress) {
 		String[] tokens = ipAddress.split("\\.");
 		if (tokens.length != 4) {
 			return false;
