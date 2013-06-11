@@ -21,12 +21,13 @@ import javax.swing.JSeparator;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
 
 public class MainScreen {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtStartIP;
+	private JTextField txtEndIP;
 
 	/**
 	 * Launch the application.
@@ -84,17 +85,19 @@ public class MainScreen {
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setStringPainted(true);
 		
-		textField = new JTextField();
-		textField.setToolTipText("(xxx.xxx.xxx.xxx)");
-		textField.setColumns(10);
+		txtStartIP = new JTextField();
+		txtStartIP.setToolTipText("(xxx.xxx.xxx.xxx)");
+		txtStartIP.setColumns(10);
 		
 		JLabel lblStartIp = new JLabel("Start IP");
+		lblStartIp.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		
-		textField_1 = new JTextField();
-		textField_1.setToolTipText("(xxx.xxx.xxx.xxx)");
-		textField_1.setColumns(10);
+		txtEndIP = new JTextField();
+		txtEndIP.setToolTipText("(xxx.xxx.xxx.xxx)");
+		txtEndIP.setColumns(10);
 		
 		JLabel lblEndIp = new JLabel("End IP");
+		lblEndIp.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		
 		JButton btnStart = new JButton("Start");
 		btnStart.setToolTipText("Begin network scan");
@@ -104,6 +107,7 @@ public class MainScreen {
 		comboBox.setMaximumRowCount(3);
 		
 		JLabel lblServerModel = new JLabel("Server Model");
+		lblServerModel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -116,11 +120,11 @@ public class MainScreen {
 					.addGap(12)
 					.addComponent(lblStartIp, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+					.addComponent(txtStartIP, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
 					.addGap(18)
 					.addComponent(lblEndIp, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+					.addComponent(txtEndIP, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
 					.addGap(52)
 					.addComponent(btnStart, GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
 					.addContainerGap())
@@ -132,9 +136,9 @@ public class MainScreen {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnStart)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtEndIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(lblEndIp)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtStartIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(lblStartIp)
 							.addComponent(lblServerModel))
 						.addGroup(groupLayout.createSequentialGroup()
