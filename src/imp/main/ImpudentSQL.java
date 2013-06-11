@@ -1,6 +1,7 @@
 package imp.main;
 
 import imp.core.IPObject;
+import imp.model.Config;
 import imp.model.NetScanner;
 import imp.view.MainScreen;
 
@@ -20,8 +21,7 @@ public class ImpudentSQL {
 		
 		// Start the GUI
 		new MainScreen();
-		
-		
+
 		// Get the start address
 		do {
 		System.out.println("Start address (x.x.x.x): ");

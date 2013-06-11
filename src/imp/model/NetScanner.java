@@ -17,6 +17,7 @@ public class NetScanner {
 	private IPObject start;
 	private IPObject end;
 	private ArrayList<IPObject> netItems;
+	private ArrayList<IPObject> netFound;
 
 	/**
 	 * Creates a new NetScanner object. Scans through all possible IPs in range
@@ -56,7 +57,14 @@ public class NetScanner {
 	 *            this is the server type enum to scan. (MYSQL, MSSQL)
 	 */
 	public void runScan(serverType type) {
-		
+		for (IPObject obj : netItems)
+		{
+			SQLAudit audit = new SQLAudit(obj, type);
+			if (audit.get().scanned == true)
+			{
+				netFound.add(audit.get());
+			}
+		}
 	}
 
 	/**

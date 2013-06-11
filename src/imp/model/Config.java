@@ -1,7 +1,5 @@
 package imp.model;
 
-import java.util.Properties;
-
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 /**
@@ -20,9 +18,18 @@ public class Config {
 	public Config() {
 		try {
 			config = new PropertiesConfiguration("config.properties");
+			System.out.println(config.getString("dict.list"));
 		} catch (ConfigurationException e) {
 			System.out.println("Failed to load config.properties file.");
 		}
-		
+	}
+	
+	/**
+	 * Keys a property from its key. Using this allows default values
+	 * @param key key to search for
+	 * @return value as a string
+	 */
+	public String getProperty(String key) {
+		return config.getString(key);
 	}
 }
