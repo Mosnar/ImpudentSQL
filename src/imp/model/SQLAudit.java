@@ -79,10 +79,13 @@ public class SQLAudit {
 			con = DriverManager.getConnection(DB_URL, USER, PORT);
 
 		} catch (SQLException e) {
-			System.out.println("Connection failed.");
-			target.scanned = false;
-			target.vulnderable = false;
-			target.reachable = false;
+			if (e.getMessage().contains("is not allowed to connect to this"))
+			{
+				System.out.println("Connection failed. You do not have authorization from this host to access this server.");
+				target.scanned = true;
+				target.vulnderable = false;
+				target.reachable = true;
+			}
 			return;
 		}
 		
