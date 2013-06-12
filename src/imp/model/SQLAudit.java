@@ -5,6 +5,8 @@ package imp.model;
 
 import java.sql.DriverManager;
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import com.mysql.jdbc.Driver;
 
@@ -19,10 +21,10 @@ public class SQLAudit {
 	private IPObject target;
 	private String JDBC_DRIVER;
 	private String DB_URL;
-	private java.sql.Connection  con = null;
 	private String USER;
 	private String PASS;
 	private String PORT;
+	private serverType type;
 
 	/**
 	 * This constructor will setup the sql scanning parameters
@@ -35,6 +37,7 @@ public class SQLAudit {
 	public SQLAudit(IPObject target, serverType type) {
 		Config cfg = new Config();
 		this.target = target;
+		this.type = type;
 		if (type == imp.core.serverType.MYSQL) {
 			USER = cfg.getProperty("mysql.user");
 			PASS = cfg.getProperty("mysql.pass");
@@ -53,20 +56,54 @@ public class SQLAudit {
 			// Scan both
 		}
 
+		this.run();
 	}
 
+	/**
+	 * Attempts to connect to the database
+	 */
 	private void run() {
 
 		try {
 			Class.forName(JDBC_DRIVER);
 		} catch (Exception e) {
+			System.out.println("Could not create JDBC driver");
 			e.printStackTrace();
+			return;
 		}
-		/*
-		Driver d = (Driver)Class.forName(JDBC_DRIVER).newInstance();
+		
+		System.out.println("Starting connection...");
+		Connection con = null;
+		try {
+			DriverManager.setLoginTimeout(2);
+			con = DriverManager.getConnection(DB_URL, USER, PORT);
 
-		con = DriverManager.getConnection(DB_URL, USER, PASS);
-		*/
+		} catch (SQLException e) {
+			System.out.println("Connection failed.");
+			target.scanned = false;
+			target.vulnderable = false;
+			target.reachable = false;
+			return;
+		}
+		
+		if (con != null) {
+			System.out.println("Connection established.");
+			target.scanned = true;
+			target.vulnderable = false;
+			target.serverType = this.type;
+			target.reachable = true;
+		} else {
+			System.out.println("Connection failed.");
+			target.scanned = true;
+			target.vulnderable = false;
+			target.reachable = false;
+			return;
+		}
+		try {
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("Couldn't close connection.");
+		}
 	}
 
 	public IPObject get() {

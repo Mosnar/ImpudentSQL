@@ -1,6 +1,7 @@
 package imp.main;
 
 import imp.core.IPObject;
+import imp.core.serverType;
 import imp.model.Config;
 import imp.model.NetScanner;
 import imp.view.MainScreen;
@@ -38,12 +39,16 @@ public class ImpudentSQL {
 
 		reader.close();
 		
-		final NetScanner scan = new NetScanner(start, end);
+		NetScanner scan = new NetScanner(start, end);
+		scan.runScan(serverType.MYSQL);
+		/*
 		ArrayList<IPObject> entries = scan.getIps();
+		
 		for(IPObject entry : entries)
 		{
 			System.out.println(entry);
 		}
+		*/
 	}
 	
 	/**

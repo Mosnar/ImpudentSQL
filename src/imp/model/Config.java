@@ -18,7 +18,6 @@ public class Config {
 	public Config() {
 		try {
 			config = new PropertiesConfiguration("config.properties");
-			System.out.println(config.getString("dict.list"));
 		} catch (ConfigurationException e) {
 			System.out.println("Failed to load config.properties file.");
 		}

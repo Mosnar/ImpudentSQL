@@ -6,6 +6,7 @@ public class IPObject {
 	private int[] addr;
 	public boolean scanned;
 	public boolean vulnderable;
+	public boolean reachable;
 	public serverType serverType;
 	public String username;
 	public String password;

@@ -32,6 +32,7 @@ public class NetScanner {
 	public NetScanner(IPObject start, IPObject end) {
 		this.start = start;
 		this.end = end;
+		this.getList();
 	}
 
 	/**
@@ -48,6 +49,19 @@ public class NetScanner {
 		netItems = entries;
 		return entries;
 	}
+	
+	/**
+	 * Generates an ArrayList of scannable IP objects
+	 * 
+	 */
+	private void getList() {
+		ArrayList<IPObject> entries = new ArrayList<IPObject>();
+		for (long i = start.toInt(); i <= end.toInt(); i++) {
+			String address = intToIp(i);
+			entries.add(new IPObject(address));
+		}
+		netItems = entries;
+	}
 
 	/**
 	 * Runs the IP scan for the designated server type. This will update the
@@ -57,8 +71,10 @@ public class NetScanner {
 	 *            this is the server type enum to scan. (MYSQL, MSSQL)
 	 */
 	public void runScan(serverType type) {
+		System.out.println(netItems.size());
 		for (IPObject obj : netItems)
 		{
+			System.out.println("Auditing: "+obj.toString());
 			SQLAudit audit = new SQLAudit(obj, type);
 			if (audit.get().scanned == true)
 			{
