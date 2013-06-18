@@ -51,6 +51,14 @@ public class NetScanner {
 	}
 	
 	/**
+	 * Returns the number of IPs calculated
+	 * @return number of IPs calculated
+	 */
+	public int getNumIP() {
+		return netItems.size();
+	}
+	
+	/**
 	 * Generates an ArrayList of scannable IP objects
 	 * 
 	 */
