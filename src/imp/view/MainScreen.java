@@ -148,82 +148,46 @@ public class MainScreen {
 		btnStart.setToolTipText("Begin network scan");
 
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel
-				.createParallelGroup(Alignment.LEADING)
-				.addGroup(
-						gl_panel.createSequentialGroup()
-								.addGap(6)
-								.addComponent(lblEndIp)
-								.addGap(58)
-								.addComponent(txtEndIP,
-										GroupLayout.PREFERRED_SIZE, 122,
-										GroupLayout.PREFERRED_SIZE)
-								.addContainerGap())
-				.addComponent(btnStart, GroupLayout.DEFAULT_SIZE, 228,
-						Short.MAX_VALUE)
-				.addGroup(
-						gl_panel.createSequentialGroup()
-								.addGap(6)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.LEADING)
-												.addComponent(lblServerModel)
-												.addComponent(lblStartIp))
-								.addGap(12)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.LEADING)
-												.addComponent(
-														txtStartIP,
-														GroupLayout.PREFERRED_SIZE,
-														122,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														comboBox,
-														GroupLayout.PREFERRED_SIZE,
-														122,
-														GroupLayout.PREFERRED_SIZE))
-								.addContainerGap()));
-		gl_panel.setVerticalGroup(gl_panel
-				.createParallelGroup(Alignment.LEADING)
-				.addGroup(
-						gl_panel.createSequentialGroup()
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.LEADING)
-												.addGroup(
-														gl_panel.createSequentialGroup()
-																.addGap(4)
-																.addComponent(
-																		lblServerModel))
-												.addComponent(
-														comboBox,
-														GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE))
-								.addGap(6)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.BASELINE)
-												.addComponent(lblStartIp)
-												.addComponent(
-														txtStartIP,
-														GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE))
-								.addGap(18)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.BASELINE)
-												.addComponent(lblEndIp)
-												.addComponent(
-														txtEndIP,
-														GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.RELATED,
-										255, Short.MAX_VALUE)
-								.addComponent(btnStart).addContainerGap()));
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(6)
+					.addComponent(lblEndIp)
+					.addGap(58)
+					.addComponent(txtEndIP, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+					.addContainerGap())
+				.addComponent(btnStart, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(6)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblServerModel)
+						.addComponent(lblStartIp))
+					.addGap(12)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtStartIP, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(comboBox, 0, 122, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(4)
+							.addComponent(lblServerModel))
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(6)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblStartIp)
+						.addComponent(txtStartIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEndIp)
+						.addComponent(txtEndIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
+					.addComponent(btnStart)
+					.addContainerGap())
+		);
 		panel.setLayout(gl_panel);
 		final TableModel data = new ServerTableModel();
 
