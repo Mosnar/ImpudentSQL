@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -41,12 +42,15 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableModel;
 import java.awt.event.InputEvent;
+import javax.swing.JRadioButton;
 
 public class MainScreen {
 
 	private JFrame frmImpudentsql;
 	private JTextField txtStartIP;
 	private JTextField txtEndIP;
+	private JTextField textField;
+	private JTextField txtTargetstxt;
 
 	/**
 	 * Launch the application.
@@ -145,27 +149,65 @@ public class MainScreen {
 		txtEndIP.setColumns(10);
 
 		JButton btnStart = new JButton("Start Scan");
+		btnStart.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		btnStart.setToolTipText("Begin network scan");
+		
+		JRadioButton rdbtnScanRange = new JRadioButton("Scan Range");
+		rdbtnScanRange.setSelected(true);
+		
+		JRadioButton rdbtnScanSingleAddress = new JRadioButton("Scan Single Address");
+		
+		textField = new JTextField();
+		textField.setToolTipText("(xxx.xxx.xxx.xxx)");
+		textField.setColumns(10);
+		
+		JRadioButton rdbtnScanFromFile = new JRadioButton("Scan From File");
+		
+		txtTargetstxt = new JTextField();
+		txtTargetstxt.setText("targets.txt");
+		txtTargetstxt.setToolTipText("File Name (Relative Location)");
+		txtTargetstxt.setColumns(10);
 
+	    ButtonGroup group = new ButtonGroup();
+	    group.add(rdbtnScanRange);
+	    group.add(rdbtnScanSingleAddress);
+	    group.add(rdbtnScanFromFile);
+		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addComponent(btnStart, GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(6)
-					.addComponent(lblEndIp)
-					.addGap(58)
-					.addComponent(txtEndIP, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-					.addContainerGap())
-				.addComponent(btnStart, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(6)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblServerModel)
-						.addComponent(lblStartIp))
+					.addComponent(lblServerModel)
 					.addGap(12)
+					.addComponent(comboBox, 0, 139, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(rdbtnScanRange)
+					.addContainerGap(142, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtStartIP, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-						.addComponent(comboBox, 0, 122, Short.MAX_VALUE))
+						.addComponent(lblStartIp)
+						.addComponent(lblEndIp))
+					.addGap(53)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtEndIP, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+						.addComponent(txtStartIP, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
+					.addContainerGap())
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(rdbtnScanSingleAddress)
+							.addPreferredGap(ComponentPlacement.RELATED, 81, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(rdbtnScanFromFile)
+							.addPreferredGap(ComponentPlacement.RELATED, 116, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtTargetstxt, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
@@ -176,15 +218,25 @@ public class MainScreen {
 							.addGap(4)
 							.addComponent(lblServerModel))
 						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(6)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(rdbtnScanRange)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblStartIp)
 						.addComponent(txtStartIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblEndIp)
 						.addComponent(txtEndIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(rdbtnScanSingleAddress)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(rdbtnScanFromFile)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtTargetstxt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
 					.addComponent(btnStart)
 					.addContainerGap())
 		);
